@@ -1,0 +1,32 @@
+.not-found {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 98vh;
+  background-color: #15202b;
+  font-family: Arial, sans-serif;
+}
+
+.content {
+  text-align: center;
+  color: #fff;
+}
+
+h1 {
+  font-size: 48px;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+p {
+  font-size: 20px;
+  margin-bottom: 20px;
+  color: #b9c0c5;
+}
+
+img {
+  width: 400px;
+  max-width: 100%;
+  margin-bottom: 30px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
