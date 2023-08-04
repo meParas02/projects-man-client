@@ -75,7 +75,6 @@ const ActionBar = ({ handleAddEditOpen, name, searchType, getType, handleDownloa
             <Button
               startIcon={<CloudDownload size="15px" />}
               sx={{ fontSize: "1rem" }}
-              onClick={handleDownload}
             >
               <CSVLink
                 data={csvData}

@@ -53,7 +53,7 @@ const AddEditProDialog = ({ editDialog, setEditDialog, handleAddEditClose, categ
               productName: values.productName,
               discription: values.discription,
               price: values.price,
-              productImage: values.productImage,
+              productImage: fileObj,
               categoryId: values.category,
               subCategoryId: values.subCategory,
             },
@@ -70,7 +70,7 @@ const AddEditProDialog = ({ editDialog, setEditDialog, handleAddEditClose, categ
             productName: values.productName,
             discription: values.discription,
             price: values.price,
-            productImage: values.productImage,
+            productImage: fileObj,
             categoryId: values.category,
             subCategoryId: values.subCategory,
           };
@@ -104,23 +104,28 @@ const AddEditProDialog = ({ editDialog, setEditDialog, handleAddEditClose, categ
 
   useEffect(() => {
     if(Object.keys(record).length) {
-      setFieldValue('productName', record.productName)
-      setFieldValue('discription', record.discription)
-      setFieldValue('price', record.price)
-      setFieldValue('category', record.categoryId)
-      setFieldValue('subCategory', record.subCategoryId)
+      setFieldValue('productName', record.productName);
+      setFieldValue('discription', record.discription);
+      setFieldValue('price', record.price);
+      setFieldValue('category', record.categoryId);
+      setFieldValue('subCategory', record.subCategoryId);
     }
-  }, [record])
+  }, [record]);
 
   useEffect(() => {
     setTimeout(() => {
       inputRef.current.focus();
     },300);
-  }, [])
+  }, []);
 
   const handleFileChange = (event) => {
-    setFileObj(event.currentTarget.files[0]);
     setFieldValue('productImage', event.currentTarget.files[0]);
+    let reader = new FileReader();
+    reader.readAsDataURL(event.currentTarget.files[0]);
+    reader.onload = () => {
+      let baseURL = reader.result;
+      setFileObj(baseURL);
+    };
   };
 
   return (

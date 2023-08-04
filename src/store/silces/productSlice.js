@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   products: {
     data: null,
+    allData: null,
     isLoading: false,
     errors: "",
   },
@@ -16,7 +17,7 @@ export const ProductSlice = createSlice({
       state.products.data = action.payload;
     },
     getAllProducts: (state, action) => {
-      state.products.data = action.payload;
+      state.products.allData = action.payload;
     },
     getSortProducts: (state, action) => {
       state.products.data = action.payload;

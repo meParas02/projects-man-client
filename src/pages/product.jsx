@@ -35,6 +35,7 @@ const ProductList = () => {
   const { categories: mastercategoryData } = useSelector((state) => state.categoryReducer);
 
   const [productList, setProductList] = useState({});
+  const [allProductList, setAllProductList] = useState([]);
   const [categoryList, setcategoryList] = useState({});
   const [editDialog, setEditDialog] = useState(false);
   const [deleteDialog, setDeleteDialog] = useState(false);
@@ -42,7 +43,7 @@ const ProductList = () => {
   const [record, setRecord] = useState({});
   const [pageNumber, setPageNumber] = useState(1);
   const [csvDownload, setCsvDownload] = useState([]);
-
+-
   useEffect(() => {
     dispatch({ type: GET_PRODUCTS, payload: {} });
     dispatch({ type: GET_ALL_CATEGORIES, payload: {} });
@@ -51,6 +52,7 @@ const ProductList = () => {
   useEffect(() => {
     setProductList(masterProductData);
     setcategoryList(mastercategoryData);
+    setAllProductList(masterProductData?.allData?.allProducts);
   }, [masterProductData, mastercategoryData]);
 
   const handleSorting = (sortColumn) => {
@@ -94,19 +96,27 @@ const ProductList = () => {
     setPageNumber(pageNum);
     dispatch({ type: GET_PRODUCTS, payload: pageNum });
   };
+  
+  useEffect(() => {
+    if(allProductList?.length != 0) {
+      const heading = ["Product Name", "Price", "Category Name", "Discription"];
+      const csvData = masterProductData?.allData?.allProducts?.map((element) => [
+        element.productName,
+        element.price,
+        element.categoryName[0]?.categoryName, 
+        element.discription, 
+      ]);
+      csvData?.unshift(heading);
+      setCsvDownload(csvData);
+    }
+  },[allProductList])
 
-  const handleDownload = () => {
-    dispatch({ type: GET_ALL_PRODUCTS, payload: {} });
-    const heading = ["Product Name", "Price", "Category Name", "Discription"];
-    const csvData = masterProductData?.data?.allProducts?.map((element) => [
-      element.productName,
-      element.price,
-      element.categoryName[0]?.categoryName, 
-      element.discription, 
-    ]);
-    csvData.unshift(heading);
-    setCsvDownload(csvData);
-  }
+  useEffect(() => {
+    if(!masterProductData?.allData?.allProducts) {
+      dispatch({ type: GET_ALL_PRODUCTS, payload: {} });
+    }
+  }, []);
+
 
   const tableHeader = [
     {
@@ -147,7 +157,6 @@ const ProductList = () => {
           handleAddEditOpen={handleAddEditOpen}
           searchType="SEARCH_PRODUCT"
           getType="GET_PRODUCTS"
-          handleDownload={handleDownload}
           csvData={csvDownload}
         />
         <br />
@@ -183,9 +192,7 @@ const ProductList = () => {
                           {row.productImage ? (
                             <>
                               <img
-                                src={`../../uploads/productImage-${
-                                  row.productImage.split("\\")[2]
-                                }`}
+                                src={row.productImage}
                                 alt="Product image"
                                 style={{ width: "100px", marginBottom: 0 }}
                               />
