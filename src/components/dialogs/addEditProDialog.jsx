@@ -120,12 +120,17 @@ const AddEditProDialog = ({ editDialog, setEditDialog, handleAddEditClose, categ
 
   const handleFileChange = (event) => {
     setFieldValue('productImage', event.currentTarget.files[0]);
-    let reader = new FileReader();
-    reader.readAsDataURL(event.currentTarget.files[0]);
-    reader.onload = () => {
-      let baseURL = reader.result;
-      setFileObj(baseURL);
-    };
+      new Promise((resolve, reject) => {
+        const fileReader = new FileReader();
+        fileReader.readAsDataURL(event.currentTarget.files[0]);
+        fileReader.onload = () => {
+          resolve(fileReader.result);
+          setFileObj(fileReader.result);
+        };
+        fileReader.onerror = (error) => {
+          reject(error);
+        };
+      });
   };
 
   return (

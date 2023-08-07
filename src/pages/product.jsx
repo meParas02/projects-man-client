@@ -182,21 +182,14 @@ const ProductList = () => {
                 <TableBody>
                   {productList.data?.allProducts.map((row, i) => {
                     return (
-                      <TableRow
-                        key={i}
-                        sx={{
-                          "&:last-child td, &:last-child th": { border: 0 },
-                        }}
-                      >
+                      <TableRow key={i} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
                         <TableCell component="th" scope="row" align="center">
                           {row.productImage ? (
-                            <>
-                              <img
-                                src={row.productImage}
-                                alt="Product image"
-                                style={{ width: "100px", marginBottom: 0 }}
-                              />
-                            </>
+                            <img
+                              src={row.productImage}
+                              alt="Product image"
+                              style={{ width: "100px", marginBottom: 0 }}
+                            />
                           ) : (
                             "No image"
                           )}
@@ -218,11 +211,7 @@ const ProductList = () => {
                           {dateFormater(row.updatedAt)}
                         </TableCell>
                         <TableCell align="center">
-                          <IconButton
-                            color="warning"
-                            aria-label="edit"
-                            onClick={() => handleAddEditOpen(row)}
-                          >
+                          <IconButton color="warning" aria-label="edit" onClick={() => handleAddEditOpen(row)}>
                             <EditIcon />
                           </IconButton>
                         </TableCell>
@@ -230,10 +219,7 @@ const ProductList = () => {
                           <IconButton
                             color="error"
                             aria-label="delete"
-                            onClick={() =>
-                              handleDeleteOpen(row._id, row.productName)
-                            }
-                          >
+                            onClick={() => handleDeleteOpen(row._id, row.productName)}>
                             <DeleteIcon />
                           </IconButton>
                         </TableCell>
