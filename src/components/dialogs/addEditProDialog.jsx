@@ -28,7 +28,7 @@ const AddEditProDialog = ({ editDialog, setEditDialog, handleAddEditClose, categ
   const inputRef = useRef();
   const [subCategory, setSubCategory] = useState({});
   const [actionFlag, setActionFlag] = useState(false);
-  const [fileObj, setFileObj] = useState({});
+  const [fileObj, setFileObj] = useState("");
   const { subCateByCate } = useSelector((state) => state.subCategoryReducer);
 
   const { setFieldValue, handleChange, handleSubmit, touched, errors, values, resetForm } = useFormik({
