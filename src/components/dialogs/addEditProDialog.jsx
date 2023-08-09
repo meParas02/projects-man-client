@@ -40,15 +40,11 @@ const AddEditProDialog = ({ editDialog, setEditDialog, handleAddEditClose, categ
       subCategory: "",
     },
     onSubmit: (values) => {
-      const formData = new FormData();
-      formData.append('productImage', fileObj);
-
       if (!record._id) {
         setActionFlag(true);
         setTimeout(() => {
-          dispatch({ type: PRODUCT_IMAGE, payload: formData });
-          dispatch({
-            type: CREATE_PRODUCT,
+          dispatch({ 
+            type: CREATE_PRODUCT, 
             payload: {
               productName: values.productName,
               discription: values.discription,
@@ -56,8 +52,8 @@ const AddEditProDialog = ({ editDialog, setEditDialog, handleAddEditClose, categ
               productImage: fileObj,
               categoryId: values.category,
               subCategoryId: values.subCategory,
-            },
-          });
+            } 
+        });
         setEditDialog(false);
         toast("Product is created successfully!");
         setActionFlag(false); 
@@ -74,7 +70,6 @@ const AddEditProDialog = ({ editDialog, setEditDialog, handleAddEditClose, categ
             categoryId: values.category,
             subCategoryId: values.subCategory,
           };
-        dispatch({ type: PRODUCT_IMAGE, payload: formData });
         dispatch({ type: UPDATE_PRODUCT, payload: updateObj });
         setEditDialog(false);
         toast("Product is updated successfully!");
@@ -269,3 +264,8 @@ const AddEditProDialog = ({ editDialog, setEditDialog, handleAddEditClose, categ
 };
 
 export default AddEditProDialog;
+
+
+// for file submission, need to append each row
+// const formImage = new FormData();
+// formImage.append('productImage', fileObj);
