@@ -29,6 +29,7 @@ const AddEditProDialog = ({ editDialog, setEditDialog, handleAddEditClose, categ
   const [subCategory, setSubCategory] = useState({});
   const [actionFlag, setActionFlag] = useState(false);
   const [fileObj, setFileObj] = useState("");
+  const { actionRes } = useSelector((state) => state.productReducer);
   const { subCateByCate } = useSelector((state) => state.subCategoryReducer);
 
   const { setFieldValue, handleChange, handleSubmit, touched, errors, values, resetForm } = useFormik({
@@ -55,7 +56,7 @@ const AddEditProDialog = ({ editDialog, setEditDialog, handleAddEditClose, categ
             } 
         });
         setEditDialog(false);
-        toast("Product is created successfully!");
+        toast(actionRes);
         setActionFlag(false); 
       }, 2000)
       } else {
@@ -72,7 +73,7 @@ const AddEditProDialog = ({ editDialog, setEditDialog, handleAddEditClose, categ
           };
         dispatch({ type: UPDATE_PRODUCT, payload: updateObj });
         setEditDialog(false);
-        toast("Product is updated successfully!");
+        toast(actionRes);
         setActionFlag(false);
     }, 2000)
       }

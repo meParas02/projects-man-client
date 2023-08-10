@@ -7,6 +7,7 @@ const initialState = {
     isLoading: false,
     errors: "",
   },
+  actionRes: ""
 };
 
 export const ProductSlice = createSlice({
@@ -25,6 +26,9 @@ export const ProductSlice = createSlice({
     getSearchProducts: (state, action) => {
       state.products.data = action.payload;
     },
+    getActionRes: (state, action) => {
+      state.actionRes = action.payload;
+    },
   },
 });
 
@@ -33,6 +37,7 @@ export const {
   getAllProducts,
   getSortProducts,
   getSearchProducts,
+  getActionRes
 } = ProductSlice.actions;
 
 export default ProductSlice.reducer;

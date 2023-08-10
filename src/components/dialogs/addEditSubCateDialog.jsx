@@ -26,6 +26,7 @@ const AddEditSubCateDialog = ({ editDialog, setEditDialog, handleAddEditClose, r
   const dispatch = useDispatch();
   const [actionFlag, setActionFlag] = useState(false)
   const [categoryList, setcategoryList] = useState({});
+  const { actionRes } = useSelector((state) => state.subCategoryReducer);
   const { categories: mastercategoryData } = useSelector((state) => state.categoryReducer);
 
   useEffect(() => {
@@ -62,7 +63,7 @@ const AddEditSubCateDialog = ({ editDialog, setEditDialog, handleAddEditClose, r
           },
         });
         setEditDialog(false);
-        toast("Sub category is created successfully!");
+        toast(actionRes);
         setActionFlag(false);
       }, 2000)
       } else {
@@ -78,7 +79,7 @@ const AddEditSubCateDialog = ({ editDialog, setEditDialog, handleAddEditClose, r
             payload: updateObj,
           });
           setEditDialog(false);
-          toast("Sub category is updated successfully!");
+          toast(actionRes);
           setActionFlag(false);
         }, 2000)
       }

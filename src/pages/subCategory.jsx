@@ -33,7 +33,7 @@ const SubCategoryList = () => {
   const [record, setRecord] = useState({});
   const [pageNumber, setPageNumber] = useState(1);
 
-  const { subCategories: masterSubCategoryData } = useSelector((state) => state.subCategoryReducer);
+  const { subCategories: masterSubCategoryData, actionRes } = useSelector((state) => state.subCategoryReducer);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -72,7 +72,7 @@ const SubCategoryList = () => {
     setTimeout(() => {
       dispatch({ type: DELETE_SUB_CATEGORIES, payload: recordId });
       setDeleteDialog(false);
-      toast("Sub Category is deleted successfully!");
+      toast(actionRes);
       setActionFlag(false);
     }, 2000)
   };

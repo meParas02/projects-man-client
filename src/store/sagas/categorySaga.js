@@ -24,6 +24,7 @@ import {
   UPDATE_CATEGORY,
 } from "../types/type";
 import { toast } from "react-toastify";
+import { getActionRes } from "../silces/productSlice";
 
 export function* handleCategories(action) {
   try {
@@ -45,7 +46,8 @@ export function* handleAllCategories(action) {
 
 export function* handleCreateCategories(action) {
   try {
-    yield createCategoryApi(action.payload);
+    const { data } = yield createCategoryApi(action.payload);
+    yield put(getActionRes(data.message));
   } catch (error) {
     toast.error(error.response.data);
   }
@@ -53,7 +55,8 @@ export function* handleCreateCategories(action) {
 
 export function* handleUpdateCategorys(action) {
   try {
-    yield updateCategoryApi(action);
+    const { data } = yield updateCategoryApi(action);
+    yield put(getActionRes(data.message));
   } catch (error) {
     toast.error(error.response.data);
   }
@@ -61,7 +64,8 @@ export function* handleUpdateCategorys(action) {
 
 export function* handleDeleteCategories(action) {
   try {
-    yield deleteCategoriesApi(action);
+    const { data } = yield deleteCategoriesApi(action);
+    yield put(getActionRes(data.message));
   } catch (error) {
     toast.error(error.response.data);
   }

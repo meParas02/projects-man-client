@@ -27,6 +27,7 @@ import {
   UPDATE_SUB_CATEGORY,
 } from "../types/type";
 import { toast } from "react-toastify";
+import { getActionRes } from "../silces/productSlice";
 
 export function* handleSubCategory(action) {
   try {
@@ -48,7 +49,8 @@ export function* handleAllSubCategories(action) {
 
 export function* handleCreateSubCategories(action) {
   try {
-    yield createSubCategoryApi(action.payload);
+    const { data } = yield createSubCategoryApi(action.payload);
+    yield put(getActionRes(data.message));
   } catch (error) {
     toast.error(error.response.data);
   }
@@ -56,7 +58,8 @@ export function* handleCreateSubCategories(action) {
 
 export function* handleUpdateSubCategories(action) {
   try {
-    yield updateSubCategoryApi(action);
+    const { data } = yield updateSubCategoryApi(action);
+    yield put(getActionRes(data.message));
   } catch (error) {
     toast.error(error.response.data);
   }
@@ -64,7 +67,8 @@ export function* handleUpdateSubCategories(action) {
 
 export function* handleDeleteSubCategories(action) {
   try {
-    yield deleteSubCategoriesApi(action);
+    const { data } = yield deleteSubCategoriesApi(action);
+    yield put(getActionRes(data.message));
   } catch (error) {
     toast.error(error.response.data);
   }

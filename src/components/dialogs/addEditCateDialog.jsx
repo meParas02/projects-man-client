@@ -14,6 +14,7 @@ const AddEditCateDialog = ({ editDialog, setEditDialog, handleAddEditClose, reco
   const dispatch = useDispatch();
   const inputRef = useRef();
   const [actionFlag, setActionFlag] = useState(false);
+  const { actionRes } = useSelector((state) => state.categoryReducer);
 
   const { setFieldValue, handleChange, handleSubmit, touched, errors, values, resetForm } = useFormik({
     initialValues: {
@@ -25,19 +26,16 @@ const AddEditCateDialog = ({ editDialog, setEditDialog, handleAddEditClose, reco
         setTimeout(() => {
           dispatch({ type: CREATE_CATEGORY, payload: { categoryName: values.categoryName } });
           setEditDialog(false);
-          toast("Category is created successfully!");
+          toast(actionRes);
           setActionFlag(false);
         }, 2000)
       } else {
         setActionFlag(true);
         setTimeout(() => {
           let updateObj = { ...record, categoryName: values.categoryName };
-          dispatch({
-            type: UPDATE_CATEGORY,
-            payload: updateObj,
-          });
+          dispatch({ type: UPDATE_CATEGORY, payload: updateObj });
           setEditDialog(false);
-          toast("Category is updated successfully!");
+          toast(actionRes);
           setActionFlag(false);
         }, 2000)
       }

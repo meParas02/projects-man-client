@@ -11,6 +11,7 @@ const initialState = {
     isLoading: false,
     errors: "",
   },
+  actionRes: ""
 };
 
 export const subCategorieSlice = createSlice({
@@ -32,6 +33,9 @@ export const subCategorieSlice = createSlice({
     getSearchSubCategories: (state, action) => {
       state.subCategories.data = action.payload;
     },
+    getActionRes: (state, action) => {
+      state.actionRes = action.payload;
+    },
   },
 });
 
@@ -41,6 +45,7 @@ export const {
   getSortSubCategories,
   getSubCateByCate,
   getSearchSubCategories,
+  getActionRes
 } = subCategorieSlice.actions;
 
 export default subCategorieSlice.reducer;

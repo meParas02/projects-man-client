@@ -31,7 +31,7 @@ import { formatNumberWithCommas } from "../helper/decimalFormater";
 const ProductList = () => {
   const dispatch = useDispatch();
 
-  const { products: masterProductData } = useSelector((state) => state.productReducer);
+  const { products: masterProductData, actionRes } = useSelector((state) => state.productReducer);
   const { categories: mastercategoryData } = useSelector((state) => state.categoryReducer);
 
   const [productList, setProductList] = useState({});
@@ -86,7 +86,7 @@ const ProductList = () => {
     setTimeout(() => {
       dispatch({ type: DELETE_PRODUCTS, payload: recordId });
       setDeleteDialog(false);
-      toast("Product is deleted successfully!");
+      toast(actionRes);
       setActionFlag(false);
     }, 2000)
   };

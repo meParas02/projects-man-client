@@ -36,7 +36,7 @@ const CategoryList = () => {
   const [record, setRecord] = useState({});
   const [pageNumber, setPageNumber] = useState(1);
 
-  const { categories: masterCategoryData } = useSelector((state) => state.categoryReducer);
+  const { categories: masterCategoryData, actionRes } = useSelector((state) => state.categoryReducer);
 
   useEffect(() => {
     dispatch({ type: GET_CATEGORIES, payload: { limit: 2 } });
@@ -72,7 +72,7 @@ const CategoryList = () => {
     setTimeout(() => {
       dispatch({ type: DELETE_CATEGORIES, payload: recordId });
       setDeleteDialog(false);
-      toast("Category is deleted successfully!");
+      toast(actionRes);
       setActionFlag(false);
     }, 2000)
   };

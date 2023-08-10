@@ -10,6 +10,7 @@ import {
   uploadProductImgApi,
 } from "../../api";
 import {
+  getActionRes,
   getAllProducts,
   getProducts,
   getSearchProducts,
@@ -47,7 +48,8 @@ export function* handleAllProducts(action) {
 
 export function* handleCreateProducts(action) {
   try {
-    yield createProductApi(action.payload);
+    const { data } = yield createProductApi(action.payload);
+    yield put(getActionRes(data.message));
   } catch (error) {
     toast.error(error.response.data);
   }
@@ -55,7 +57,8 @@ export function* handleCreateProducts(action) {
 
 export function* handleUpdateProducts(action) {
   try {
-    yield updateProductApi(action);
+    const { data } = yield updateProductApi(action);
+    yield put(getActionRes(data.message));
   } catch (error) {
     toast.error(error.response.data);
   }
@@ -63,7 +66,8 @@ export function* handleUpdateProducts(action) {
 
 export function* handleDeleteProducts(action) {
   try {
-    yield deleteProductsApi(action);
+    const { data } = yield deleteProductsApi(action);
+    yield put(getActionRes(data.message));
   } catch (error) {
     toast.error(error.response.data);
   }

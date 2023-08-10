@@ -6,6 +6,7 @@ const initialState = {
     isLoading: false,
     errors: "",
   },
+  actionRes: ""
 };
 
 export const categorieSlice = createSlice({
@@ -24,6 +25,9 @@ export const categorieSlice = createSlice({
     getSearchCategories: (state, action) => {
       state.categories.data = action.payload;
     },
+    getActionRes: (state, action) => {
+      state.actionRes = action.payload;
+    },
   },
 });
 
@@ -32,6 +36,7 @@ export const {
   getAllCategories,
   getSortCategories,
   getSearchCategories,
+  getActionRes
 } = categorieSlice.actions;
 
 export default categorieSlice.reducer;
