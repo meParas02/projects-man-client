@@ -37,7 +37,7 @@ const SubCategoryList = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch({ type: GET_SUB_CATEGORIES, payload: 1 });
+    dispatch({ type: GET_SUB_CATEGORIES, payload: {} });
   }, []);
 
   useEffect(() => {

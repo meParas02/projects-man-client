@@ -13,6 +13,7 @@ import MenuItem from "@mui/material/MenuItem";
 import Diversity2Icon from "@mui/icons-material/Diversity2";
 import { Link } from "react-router-dom";
 import { Switch } from "@mui/material";
+import { useThemeContext } from '../contexts/themeContext';
 
 const pages = [
   { name: "Products", route: "/productList" },
@@ -23,6 +24,7 @@ const settings = ["Dashboard", "Profile", "Account", "Logout"];
 const label = { inputProps: { 'aria-label': 'Switch demo' } };
 
 const Header = () => {
+  const { darkMode, toggleDarkMode } = useThemeContext();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -74,7 +76,7 @@ const Header = () => {
               </Link>
             ))}
           </Box>
-          <Switch {...label} size="large" color="warning"/>
+          <Switch {...label} size="large" color="warning" onChange={toggleDarkMode}/>
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -109,4 +111,5 @@ const Header = () => {
     </AppBar>
   );
 };
+
 export default Header;

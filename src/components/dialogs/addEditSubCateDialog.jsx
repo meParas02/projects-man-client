@@ -18,6 +18,7 @@ import ToastCon from "../toastContainer";
 import {
   CREATE_SUB_CATEGORY,
   GET_ALL_CATEGORIES,
+  GET_SUB_CATEGORIES,
   UPDATE_SUB_CATEGORY,
 } from "../../store/types/type";
 import DialogContainer from "./dialogContainer";
@@ -65,6 +66,7 @@ const AddEditSubCateDialog = ({ editDialog, setEditDialog, handleAddEditClose, r
         setEditDialog(false);
         toast(actionRes);
         setActionFlag(false);
+        dispatch({ type: GET_SUB_CATEGORIES, payload: {} });
       }, 2000)
       } else {
         setActionFlag(true);
@@ -81,6 +83,7 @@ const AddEditSubCateDialog = ({ editDialog, setEditDialog, handleAddEditClose, r
           setEditDialog(false);
           toast(actionRes);
           setActionFlag(false);
+          dispatch({ type: GET_SUB_CATEGORIES, payload: {} });
         }, 2000)
       }
     },

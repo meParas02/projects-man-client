@@ -88,6 +88,8 @@ const ProductList = () => {
       setDeleteDialog(false);
       toast(actionRes);
       setActionFlag(false);
+      dispatch({ type: GET_PRODUCTS, payload: {} });
+      dispatch({ type: GET_ALL_CATEGORIES, payload: {} });
     }, 2000)
   };
 

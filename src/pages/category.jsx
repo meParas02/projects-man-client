@@ -39,7 +39,7 @@ const CategoryList = () => {
   const { categories: masterCategoryData, actionRes } = useSelector((state) => state.categoryReducer);
 
   useEffect(() => {
-    dispatch({ type: GET_CATEGORIES, payload: { limit: 2 } });
+    dispatch({ type: GET_CATEGORIES, payload: {} });
   }, []);
 
   useEffect(() => {
@@ -74,6 +74,7 @@ const CategoryList = () => {
       setDeleteDialog(false);
       toast(actionRes);
       setActionFlag(false);
+      dispatch({ type: GET_CATEGORIES, payload: {} });
     }, 2000)
   };
 

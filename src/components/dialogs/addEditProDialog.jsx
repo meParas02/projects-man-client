@@ -17,7 +17,8 @@ import { toast } from "react-toastify";
 import ToastCon from "../toastContainer";
 import {
   CREATE_PRODUCT,
-  PRODUCT_IMAGE,
+  GET_ALL_CATEGORIES,
+  GET_PRODUCTS,
   SUB_CATE_BY_CATE,
   UPDATE_PRODUCT,
 } from "../../store/types/type";
@@ -58,6 +59,8 @@ const AddEditProDialog = ({ editDialog, setEditDialog, handleAddEditClose, categ
         setEditDialog(false);
         toast(actionRes);
         setActionFlag(false); 
+        dispatch({ type: GET_PRODUCTS, payload: {} });
+        dispatch({ type: GET_ALL_CATEGORIES, payload: {} });
       }, 2000)
       } else {
         setActionFlag(true);
@@ -75,6 +78,8 @@ const AddEditProDialog = ({ editDialog, setEditDialog, handleAddEditClose, categ
         setEditDialog(false);
         toast(actionRes);
         setActionFlag(false);
+        dispatch({ type: GET_PRODUCTS, payload: {} });
+        dispatch({ type: GET_ALL_CATEGORIES, payload: {} });
     }, 2000)
       }
     },

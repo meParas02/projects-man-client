@@ -11,6 +11,7 @@ import NotFound from "./pages/404";
 import CategoryList from "./pages/category";
 import SubCategoryList from "./pages/subCategory";
 import "react-toastify/dist/ReactToastify.css";
+import { ThemeProvider } from "./contexts/themeContext";
 
 const router = createBrowserRouter([
   {
@@ -46,7 +47,9 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")).render(
   // <React.StrictMode>
   <Provider store={store}>
-    <RouterProvider router={router} />
+    <ThemeProvider>
+      <RouterProvider router={router} />
+    </ThemeProvider>
   </Provider>
   // </React.StrictMode>
 );

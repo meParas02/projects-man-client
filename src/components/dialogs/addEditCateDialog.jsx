@@ -4,10 +4,10 @@ import DialogContent from "@mui/material/DialogContent";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { TextField, Grid } from "@mui/material";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import ToastCon from "../toastContainer";
-import { CREATE_CATEGORY, UPDATE_CATEGORY } from "../../store/types/type";
+import { CREATE_CATEGORY, GET_CATEGORIES, UPDATE_CATEGORY } from "../../store/types/type";
 import DialogContainer from "./dialogContainer";
 
 const AddEditCateDialog = ({ editDialog, setEditDialog, handleAddEditClose, record }) => {
@@ -28,6 +28,7 @@ const AddEditCateDialog = ({ editDialog, setEditDialog, handleAddEditClose, reco
           setEditDialog(false);
           toast(actionRes);
           setActionFlag(false);
+          dispatch({ type: GET_CATEGORIES, payload: { } });
         }, 2000)
       } else {
         setActionFlag(true);
@@ -37,6 +38,7 @@ const AddEditCateDialog = ({ editDialog, setEditDialog, handleAddEditClose, reco
           setEditDialog(false);
           toast(actionRes);
           setActionFlag(false);
+          dispatch({ type: GET_CATEGORIES, payload: { } });
         }, 2000)
       }
     },
